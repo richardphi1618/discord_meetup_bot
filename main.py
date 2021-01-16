@@ -1,4 +1,6 @@
-print ("hello world")
+import meetup_rest_api as mra 
+import requests as r
+import json
 
-
-#something new
+response = r.get(mra._url("events"))
+print (response.json())
