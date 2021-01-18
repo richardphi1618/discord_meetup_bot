@@ -18,7 +18,7 @@ if(os.path.exists(f"{filepath}")):
     print("oh boy here we go again....")
     with open(filepath) as f:
         old_list = json.load(f)
-else :
+else:
     print("well where'd you leave it ya dingus?")
     old_list= open(f"{filepath}","w+")
 
