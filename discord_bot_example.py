@@ -22,4 +22,4 @@ async def before():
     print("Finished waiting")
 
 called_once_a_day.start()
-bot.run('ODAxMTk4NDU4NDU0MTQ3MDky.YAdMNg.BCzxgpwnpFJ3JU1DllyrGvd0ktc')
+bot.run('Token_Secret')
