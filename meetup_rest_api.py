@@ -35,7 +35,7 @@ def _get_upcoming():
                 print(event_info)
     else:
         print("No New Updates")
-        event_info = None
+        event_info = "No New Updates"
 
     #overwrite old list with new
     with open(f'{filename}', 'w') as f:
