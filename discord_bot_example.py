@@ -19,4 +19,4 @@ async def before():
     print("Finished waiting")
 
 update_announcements.start()
-bot.run('ODAxMTk4NDU4NDU0MTQ3MDky.YAdMNg.ZN1Kb8pY7YpBe12pilfdb0jlc1o')
+bot.run('Secret_token')
