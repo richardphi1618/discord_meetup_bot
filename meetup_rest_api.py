@@ -1,6 +1,47 @@
-import requests
+import datetime , time, calendar, os
+import requests as r
 import json
 
 def _url(path):
     return 'https://api.meetup.com/PyRVAUserGroup/' + path
 
+def _get_upcoming():
+    #request events from Meetup REST API
+    response = r.get(_url("events"))
+    new_list = response.json()
+    #print (response.json())
+
+    #file storage handling
+    curpath = os.path.abspath(os.curdir)
+    filename = "eventList.json"
+    filepath = os.path.join(curpath, filename)
+    print (f"Trying to open: {filepath}")
+
+    if(os.path.exists(f"{filepath}")):
+        print("oh boy here we go again....")
+        with open(filepath) as f:
+            old_list = json.load(f)
+    else:
+        print("well where'd you leave it ya dingus?")
+        old_list= open(f"{filepath}","w+")
+
+    ignore_list = ['Monthly online lecture night', 'Monthly Coding Night (ONLINE!!!)']
+
+    #compare old and new list
+    if new_list != old_list:
+        for x in response.json():
+            if x['name'] not in ignore_list:
+                event_info = f"Event: {x['name']} @Date: {x['local_date']} @Time: {x['local_time']}\nStatus: {x['status']}\nLink: {x['link']}"
+                print(event_info)
+    else:
+        print("No New Updates")
+        event_info = None
+
+    #overwrite old list with new
+    with open(f'{filename}', 'w') as f:
+        json.dump(new_list, f)
+
+    return event_info
+
+if __name__ == '__main__':
+    _get_upcoming()
