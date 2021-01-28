@@ -1,5 +1,11 @@
+import os
+from dotenv import load_dotenv
 from discord.ext import commands, tasks
 import meetup_rest_api as mra 
+
+
+load_dotenv()
+token = os.environ.get("api-token")
 
 target_channel_id = 800142295092953098 #change this to the channel id
 bot = commands.Bot("!")
@@ -19,4 +25,5 @@ async def before():
     print("Finished waiting")
 
 update_announcements.start()
-bot.run('Secret_token')
+#create .env file => Secret_Token = "Enter your token here"
+bot.run(os.environ.get('Secret_Token'))
